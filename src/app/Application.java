@@ -31,7 +31,7 @@ public class Application {
         Application app = new Application();
 // Todo : initialiser une liste d'utilisateurs
 
-        LocalTime j7ts = LocalTime.now();
+        /*LocalTime j7ts = LocalTime.now();
         for (int i = 0;i<NB_PROCCESS;i++){
             app.executeJ7();
         }
@@ -48,7 +48,17 @@ public class Application {
         Duration d7 = Duration.between(j7ts,j7tf);
         Duration d8 = Duration.between(j8ts,j8tf);
         System.out.println("Temps java7 :"+d7.toString());
-        System.out.println("Temps java8 :"+d8.toString());
+        System.out.println("Temps java8 :"+d8.toString());*/
+
+        //Création opti
+
+        LocalTime j7ts = LocalTime.now();
+        for (int i = 0;i<NB_PROCCESS;i++){
+            app.executeJ7Opti();
+        }
+        LocalTime j7tf = LocalTime.now();
+        Duration d7 = Duration.between(j7ts,j7tf);
+        System.out.println("Temps java7 :"+d7.toString());
 
     }
     public void executeJ7() {
@@ -90,6 +100,51 @@ public class Application {
                 UtilisateurJava7 util = utilisateursJava7.get(i);
                 if(util.getNom().contains("a"))
                 util.setNom(util.getNom().toUpperCase());
+            }
+        }
+
+        for(UtilisateurJava7 utilisateurJava7 : utilisateursJava7){
+            System.out.println(utilisateurJava7);
+        }
+
+
+    }
+    public void executeJ7Opti() {
+// Todo : implementer les methodes en java 7
+        List<UtilisateurJava7> utilisateursJava7 = new ArrayList<>();
+        Util.mockListJava7Opti(utilisateursJava7);
+
+
+        for(UtilisateurJava7 utilisateurJava7 : utilisateursJava7){
+            System.out.println(utilisateurJava7);
+        }
+
+        System.out.println("_____________________________________________________________________________");
+        utilisateursJava7.sort(new Comparator<UtilisateurJava7>() {
+            @Override
+            public int compare(UtilisateurJava7 o1, UtilisateurJava7 o2) {
+                return o1.getDateAdhesion().compareTo(o2.getDateAdhesion());
+            }
+        });
+
+        for(UtilisateurJava7 utilisateurJava7 : utilisateursJava7){
+            System.out.println(utilisateurJava7);
+        }
+        System.out.println("-----------------------------------------------------------------");
+
+        utilisateursJava7.sort(new Comparator<UtilisateurJava7>() {
+            @Override
+            public int compare(UtilisateurJava7 o1, UtilisateurJava7 o2) {
+                int nomComp = o1.getNom().compareTo(o2.getNom());
+                return (nomComp != 0) ? nomComp : o1.getPrenom().compareTo(o2.getPrenom())*-1;
+            }
+        });
+
+        for (int i = 0; i < 3; i++) {
+            if (i < utilisateursJava7.size()) {
+                UtilisateurJava7 util = utilisateursJava7.get(i);
+                if(util.getNom().contains("a"))
+                    util.setNom(util.getNom().toUpperCase());
             }
         }
 

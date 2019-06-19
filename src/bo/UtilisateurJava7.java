@@ -18,6 +18,11 @@ public final class UtilisateurJava7 extends Utilisateur {
         this.dateAdhesion.setTime(sDate);
     }
 
+    public UtilisateurJava7(String nom, String prenom, Calendar dateAdhesion) {
+        super(nom, prenom);
+        this.dateAdhesion = dateAdhesion;
+    }
+
     public Calendar getDateAdhesion() {
         return dateAdhesion;
     }
