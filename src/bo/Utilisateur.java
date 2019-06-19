@@ -1,7 +1,5 @@
 package bo;
 
-import java.util.Date;
-
 public abstract class Utilisateur {
     protected String nom;
     protected String prenom;

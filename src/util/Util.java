@@ -4,8 +4,6 @@ import bo.UtilisateurJava7;
 import bo.UtilisateurJava8;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Util {
