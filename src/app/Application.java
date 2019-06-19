@@ -5,6 +5,9 @@ import bo.UtilisateurJava8;
 import util.Util;
 
 import java.text.ParseException;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -24,14 +27,30 @@ public class Application {
      place
      *
      */
+    public static final int NB_PROCCESS = 500000;
     public static void main(String[] args) {
         Application app = new Application();
 // Todo : initialiser une liste d'utilisateurs
-        app.executeJ7();
+
+        LocalTime j7ts = LocalTime.now();
+        for (int i = 0;i<NB_PROCCESS;i++){
+            app.executeJ7();
+        }
+        LocalTime j7tf = LocalTime.now();
+
         System.out.println("--------------------------------------------------------------------------");
         System.out.println("##########################################################################");
         System.out.println("--------------------------------------------------------------------------");
-        app.executeJ8();
+        LocalTime j8ts = LocalTime.now();
+        for (int i = 0;i<NB_PROCCESS;i++){
+            app.executeJ8();
+        }
+        LocalTime j8tf = LocalTime.now();
+        Duration d7 = Duration.between(j7ts,j7tf);
+        Duration d8 = Duration.between(j8ts,j8tf);
+        System.out.println("Temps java7 :"+d7.toString());
+        System.out.println("Temps java8 :"+d8.toString());
+
     }
     public void executeJ7() {
 // Todo : implementer les methodes en java 7
